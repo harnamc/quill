@@ -69,6 +69,14 @@ class Editor {
     }, 0);
     this.scroll.batchEnd();
     this.scroll.optimize();
+
+    for (var i = 0; i < this.scroll.domNode.children.length; i++) {
+      let child = this.scroll.domNode.children[i];
+      if (child.nodeName === 'TABLE') {
+        child.classList = this.originalTableClasses;
+      }
+    }
+
     return this.update(normalizedDelta);
   }
 

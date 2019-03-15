@@ -62,6 +62,14 @@ class Quill {
   }
 
   constructor(container, options = {}) {
+    
+    for (var i = 0; i < container.children.length; i++) {
+      let child = container.children[i];
+      if (child.nodeName === 'TABLE') {
+        this.originalTableClasses = child.classList;
+      }
+    }
+
     this.options = expandConfig(container, options);
     this.container = this.options.container;
     if (this.container == null) {
@@ -386,6 +394,7 @@ class Quill {
       () => {
         delta = new Delta(delta);
         const length = this.getLength();
+        this.editor.originalTableClasses = this.originalTableClasses;
         const deleted = this.editor.deleteText(0, length);
         const applied = this.editor.applyDelta(delta);
         const lastOp = applied.ops[applied.ops.length - 1];
