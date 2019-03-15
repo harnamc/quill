@@ -65,8 +65,13 @@ class Quill {
     
     for (var i = 0; i < container.children.length; i++) {
       let child = container.children[i];
-      if (child.nodeName === 'TABLE') {
-        this.originalTableClasses = child.classList;
+      let childContainsTables = child.children[0] && child.children[0].nodeName === 'TABLE';
+      if (child.nodeName === 'TABLE' || childContainsTables) {
+        if (childContainsTables) {
+          this.originalTable = child.children[0];
+        } else {
+          this.originalTable = child;
+        }
       }
     }
 
@@ -394,7 +399,7 @@ class Quill {
       () => {
         delta = new Delta(delta);
         const length = this.getLength();
-        this.editor.originalTableClasses = this.originalTableClasses;
+        this.editor.originalTable = this.originalTable;
         const deleted = this.editor.deleteText(0, length);
         const applied = this.editor.applyDelta(delta);
         const lastOp = applied.ops[applied.ops.length - 1];
