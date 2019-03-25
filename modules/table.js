@@ -106,6 +106,9 @@ class Table extends Module {
         const [table, row, cell] = this.getTable(range);
         if (cell == null) return;
         const index = row.rowOffset();
+        if (index === 0) {
+            return;
+        }
         table.insertRow(index + offset);
         this.quill.update(Quill.sources.USER);
         if (offset > 0) {
@@ -118,6 +121,14 @@ class Table extends Module {
             );
         }
         this._updateOriginalTable(table.domNode);
+    }
+
+    canAddRowAbove() {
+        const range = this.quill.getSelection();
+        const [table, row, cell] = this.getTable(range);
+        if (cell == null) return;
+        const index = row.rowOffset();
+        return index !== 0;
     }
 
     insertRowAbove() {
