@@ -128,7 +128,8 @@ class Table extends Module {
         const [table, row, cell] = this.getTable(range);
         if (cell == null) return;
         const index = row.rowOffset();
-        return index !== 0;
+        if (index === 0) return false;
+        return true
     }
 
     insertRowAbove() {
