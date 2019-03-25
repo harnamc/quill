@@ -79,6 +79,7 @@ class Table extends Module {
         if (cell == null) return;
         const column = cell.cellOffset();
         table.insertColumn(column + offset);
+        table.domNode.rows[0].children[column + offset].textContent = 'Header';
         this.quill.update(Quill.sources.USER);
         let shift = row.rowOffset();
         if (offset === 0) {
