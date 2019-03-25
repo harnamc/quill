@@ -39,6 +39,7 @@ class Table extends Module {
         if (cell == null) return;
         table.deleteColumn(cell.cellOffset());
         this.quill.update(Quill.sources.USER);
+        this._updateOriginalTable(table.domNode);
     }
 
     deleteRow() {
@@ -46,6 +47,10 @@ class Table extends Module {
         if (row == null) return;
         row.remove();
         this.quill.update(Quill.sources.USER);
+        // Table (parent.parent)
+        // - Table container (parent)
+        //  - Row
+        this._updateOriginalTable(row.parent.parent.domNode);
     }
 
     deleteTable() {
@@ -84,6 +89,7 @@ class Table extends Module {
             range.length,
             Quill.sources.SILENT,
         );
+        this._updateOriginalTable(table.domNode);
     }
 
     insertColumnLeft() {
@@ -110,6 +116,7 @@ class Table extends Module {
                 Quill.sources.SILENT,
             );
         }
+        this._updateOriginalTable(table.domNode);
     }
 
     insertRowAbove() {
@@ -149,6 +156,11 @@ class Table extends Module {
                 return false;
             });
         });
+    }
+
+    _updateOriginalTable(table) {
+        this.quill.originalTable = table;
+        this.quill.editor.originalTable = table;
     }
 }
 
