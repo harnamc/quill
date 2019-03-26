@@ -10,6 +10,7 @@ import {
 import Break from './break';
 import Inline from './inline';
 import TextBlot from './text';
+import Container from './container';
 
 const NEWLINE_LENGTH = 1;
 
@@ -126,7 +127,7 @@ class Block extends BlockBlot {
 Block.blotName = 'block';
 Block.tagName = 'P';
 Block.defaultChild = Break;
-Block.allowedChildren = [Break, Inline, EmbedBlot, TextBlot];
+Block.allowedChildren = [Break, Inline, EmbedBlot, TextBlot, Container];
 
 class BlockEmbed extends EmbedBlot {
   attach() {
