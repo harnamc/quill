@@ -163,7 +163,7 @@ TableHead.tagName = 'TH';
 class THead extends Container {}
 
 THead.blotName = 'thead';
-THead.tagname = 'THEAD';
+THead.tagName = 'THEAD';
 
 class HeadRow extends Container {
   checkMerge() {
