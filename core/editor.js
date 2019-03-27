@@ -92,7 +92,9 @@ class Editor {
         line.format(format, formats[format]);
       });
     });
-    this.scroll.optimize();
+    if (typeof this.originalTable === undefined) { 
+      this.scroll.optimize();
+    }
     const delta = new Delta().retain(index).retain(length, clone(formats));
     return this.update(delta);
   }
