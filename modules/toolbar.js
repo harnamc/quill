@@ -102,10 +102,7 @@ class Toolbar extends Module {
       } else {
         this.quill.format(format, value, Quill.sources.USER);
       }
-
-      if (typeof this.originalTable === undefined) {
-        this.update(range);
-      }
+      this.update(range);
     });
     this.controls.push([format, input]);
   }
