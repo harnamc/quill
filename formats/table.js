@@ -1,6 +1,5 @@
 import Block from '../blots/block';
 import Container from '../blots/container';
-import ListContainer from './list';
 
 class TableCell extends Block {
   static create(value) {
@@ -296,7 +295,6 @@ HeadRow.requiredContainer = THead;
 
 TableRow.allowedChildren = [TableCell];
 TableCell.requiredContainer = TableRow;
-TableCell.allowedChildren = [ListContainer];
 
 HeadRow.allowedChildren = [TableHead];
 TableHead.requiredContainer = HeadRow;
