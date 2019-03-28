@@ -187,7 +187,11 @@ class HeadRow extends Container {
       if (child.next == null) return;
       const childFormats = child.formats();
       const nextFormats = child.next.formats();
-      if (childFormats.table !== nextFormats.table) {
+      let skip = false;
+      if (child.domNode.nodeName === 'LI') {
+        skip = true;
+      }
+      if (!skip && childFormats.table !== nextFormats.table) {
         const next = this.splitAfter(child);
         if (next) {
           next.optimize();
