@@ -76,7 +76,7 @@ class TableRow extends Container {
       const childFormats = child.formats();
       const nextFormats = child.next.formats();
       let skip = false;
-      if (child.domNode.nodeName === 'LI') {
+      if (child.domNode.nodeName === 'LI' || child.domNode.nodeName === 'TD') {
         skip = true;
       }
 
