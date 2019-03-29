@@ -73,14 +73,10 @@ class TableRow extends Container {
     super.optimize(...args);
     this.children.forEach(child => {
       if (child.next == null) return;
+      if (child.domNode.nodeName === 'LI' || child.domNode.nodeName === 'TD') return;
       const childFormats = child.formats();
       const nextFormats = child.next.formats();
-      let skip = false;
-      if (child.domNode.nodeName === 'LI' || child.domNode.nodeName === 'TD') {
-        skip = true;
-      }
-
-      if (!skip && childFormats.table !== nextFormats.table) {
+      if (childFormats.table !== nextFormats.table) {
         const next = this.splitAfter(child);
         if (next) {
           next.optimize();
