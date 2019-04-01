@@ -92,7 +92,7 @@ class Editor {
         line.format(format, formats[format]);
       });
     });
-    this.scroll.optimize();
+    if (formats.list !== 'bullet') this.scroll.optimize();
     const delta = new Delta().retain(index).retain(length, clone(formats));
     return this.update(delta);
   }
